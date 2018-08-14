@@ -13,7 +13,7 @@ contract('StakeContract', function(accounts) {
     let firstAccount = accounts[0]; // Admin role
     let secondAccount = accounts[1]; // Authorized address that can slash tokens
     let thirdAccount = accounts[2]; // Staker
-    let fourthAccount = accounts[3]; // Random malicious dude
+    let fourthAccount = accounts[3]; // Another staker
 
     before(async function() {
 
@@ -32,7 +32,7 @@ contract('StakeContract', function(accounts) {
         await tokenContract.approve(stakeContract.address, 100, {from: thirdAccount});
 
         // Top up the balance
-        let status = await stakeContract.topUpStake(100, mockToken.address, {from: thirdAccount});
+        await stakeContract.topUpStake(100, mockToken.address, {from: thirdAccount});
 
     });
 

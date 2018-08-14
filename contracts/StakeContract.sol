@@ -19,6 +19,8 @@ contract StakeContract is Authorizable {
     struct TokenStake {
         uint lockedUp;
         uint total;
+        uint highestAmount;
+        address highestAddress;
     }
 
     mapping (address => mapping (address => Stake)) public userStakes;
@@ -191,6 +193,16 @@ contract StakeContract is Authorizable {
         return tokenStakes[_tokenAddress].lockedUp;
     }
 
+    /** @dev Get the highest amount of stake
+      * @param _tokenAddress token address to check highest stake for.
+    */
+    function getHighestTokenStake(address _tokenAddress)
+        public
+        view
+        returns (uint, address)
+    {
+        // @ TODO: Implementation
+    }
 
     /** @dev Top up your stake once you've given approval to transfer funds.
       * @param _amount is how much you would like to withdraw.
