@@ -53,6 +53,10 @@ contract('StakeContract', function(accounts) {
         let lockedTokenAmount = await stakeContract.getLockedTokenStake(mockToken.address);
         assert.equal(lockedTokenAmount.toNumber(), 0);
 
+        let highestTokenStake = await stakeContract.getHighestTokenStake(mockToken.address);
+        assert.equal(highestTokenStake[0].toNumber(), 100);
+        assert.equal(highestTokenStake[1], thirdAccount);
+
     });
 
     describe("when locking tokens", () => {
@@ -80,6 +84,10 @@ contract('StakeContract', function(accounts) {
 
             let lockedTokenAmount = await stakeContract.getLockedTokenStake(mockToken.address);
             assert.equal(lockedTokenAmount.toNumber(), 100);
+
+            let highestTokenStake = await stakeContract.getHighestTokenStake(mockToken.address);
+            assert.equal(highestTokenStake[0].toNumber(), 0);
+            assert.equal(highestTokenStake[1], thirdAccount);
 
         });
 
@@ -118,6 +126,10 @@ contract('StakeContract', function(accounts) {
             let lockedTokenAmount = await stakeContract.getLockedTokenStake(mockToken.address);
             assert.equal(lockedTokenAmount.toNumber(), 50);
 
+            let highestTokenStake = await stakeContract.getHighestTokenStake(mockToken.address);
+            assert.equal(highestTokenStake[0].toNumber(), 0);
+            assert.equal(highestTokenStake[1], thirdAccount);
+
         });
 
     });
@@ -138,22 +150,26 @@ contract('StakeContract', function(accounts) {
 
         it("should be able to transfer from an authorised address", async function() {
 
-            await stakeContract.transferStake(thirdAccount, mockToken.address, 25, fourthAccount, {from: firstAccount});
+            await stakeContract.transferStake(thirdAccount, mockToken.address, 30, fourthAccount, {from: firstAccount});
 
             let availableAmount = await stakeContract.getAvailableStake(fourthAccount, mockToken.address);
-            assert.equal(availableAmount.toNumber(), 25);
+            assert.equal(availableAmount.toNumber(), 30);
 
             let totalAmount = await stakeContract.getTotalStake(thirdAccount, mockToken.address, {from: thirdAccount});
-            assert.equal(totalAmount.toNumber(), 25);
+            assert.equal(totalAmount.toNumber(), 20);
 
             let lockedAmount = await stakeContract.getLockedStake(thirdAccount, mockToken.address, {from: thirdAccount});
-            assert.equal(lockedAmount.toNumber(), 25);
+            assert.equal(lockedAmount.toNumber(), 20);
 
             let totalTokenAmount = await stakeContract.getTotalTokenStake(mockToken.address);
             assert.equal(totalTokenAmount.toNumber(), 50);
 
             let lockedTokenAmount = await stakeContract.getLockedTokenStake(mockToken.address);
-            assert.equal(lockedTokenAmount.toNumber(), 25);
+            assert.equal(lockedTokenAmount.toNumber(), 20);
+
+            let highestTokenStake = await stakeContract.getHighestTokenStake(mockToken.address);
+            assert.equal(highestTokenStake[0].toNumber(), 30);
+            assert.equal(highestTokenStake[1], fourthAccount);
 
         });
 
@@ -198,6 +214,9 @@ contract('StakeContract', function(accounts) {
             let lockedTokenAmount = await stakeContract.getLockedTokenStake(mockToken.address);
             assert.equal(lockedTokenAmount.toNumber(), 0);
 
+            assert.equal(highestTokenStake[0].toNumber(), 30);
+            assert.equal(highestTokenStake[1], fourthAccount);
+
         });
 
     });
@@ -213,15 +232,15 @@ contract('StakeContract', function(accounts) {
 
         it('should be able to withdraw all the available tokens they have', async function() {
 
-            await stakeContract.withdrawStake(25, mockToken.address, {from: thirdAccount});
+            await stakeContract.withdrawStake(30, mockToken.address, {from: fourthAccount});
 
-            let availableAmount = await stakeContract.getAvailableStake(thirdAccount, mockToken.address);
+            let availableAmount = await stakeContract.getAvailableStake(fourthAccount, mockToken.address);
             assert.equal(availableAmount.toNumber(), 0);
 
-            let totalAmount = await stakeContract.getTotalStake(thirdAccount, mockToken.address, {from: thirdAccount});
+            let totalAmount = await stakeContract.getTotalStake(fourthAccount, mockToken.address, {from: fourthAccount});
             assert.equal(totalAmount.toNumber(), 0);
 
-            let lockedAmount = await stakeContract.getLockedStake(thirdAccount, mockToken.address, {from: thirdAccount});
+            let lockedAmount = await stakeContract.getLockedStake(fourthAccount, mockToken.address, {from: fourthAccount});
             assert.equal(lockedAmount.toNumber(), 0);
 
             let totalTokenAmount = await stakeContract.getTotalTokenStake(mockToken.address);
@@ -229,6 +248,9 @@ contract('StakeContract', function(accounts) {
 
             let lockedTokenAmount = await stakeContract.getLockedTokenStake(mockToken.address);
             assert.equal(lockedTokenAmount.toNumber(), 0);
+
+            assert.equal(highestTokenStake[0].toNumber(), 25);
+            assert.equal(highestTokenStake[1], thirdAccount);
 
         });
 
