@@ -1,0 +1,797 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>8x API</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;typescript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="typescript">typescript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#installation" class="toc-h1 toc-link" data-title="Installation">Installation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#8x-js" class="toc-h2 toc-link" data-title="8x.js">8x.js</a>
+                  </li>
+                  <li>
+                    <a href="#bignumber-js" class="toc-h2 toc-link" data-title="BigNumber.js">BigNumber.js</a>
+                  </li>
+                  <li>
+                    <a href="#web3" class="toc-h2 toc-link" data-title="Web3">Web3</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#configuration" class="toc-h1 toc-link" data-title="Configuration">Configuration</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#address-book" class="toc-h2 toc-link" data-title="Address Book">Address Book</a>
+                  </li>
+                  <li>
+                    <a href="#web3-2" class="toc-h2 toc-link" data-title="Web3">Web3</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#plans" class="toc-h1 toc-link" data-title="Plans">Plans</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-plan" class="toc-h2 toc-link" data-title="Create plan">Create plan</a>
+                  </li>
+                  <li>
+                    <a href="#get-plan" class="toc-h2 toc-link" data-title="Get plan">Get plan</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-plans" class="toc-h2 toc-link" data-title="Get all plans">Get all plans</a>
+                  </li>
+                  <li>
+                    <a href="#get-subscribers" class="toc-h2 toc-link" data-title="Get subscribers">Get subscribers</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-plan" class="toc-h2 toc-link" data-title="Cancel plan">Cancel plan</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#subscriptions" class="toc-h1 toc-link" data-title="Subscriptions">Subscriptions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#check-pre-authorisation" class="toc-h2 toc-link" data-title="Check pre-authorisation">Check pre-authorisation</a>
+                  </li>
+                  <li>
+                    <a href="#give-pre-authorisation" class="toc-h2 toc-link" data-title="Give pre-authorisation">Give pre-authorisation</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe" class="toc-h2 toc-link" data-title="Subscribe">Subscribe</a>
+                  </li>
+                  <li>
+                    <a href="#activate" class="toc-h2 toc-link" data-title="Activate">Activate</a>
+                  </li>
+                  <li>
+                    <a href="#get-status" class="toc-h2 toc-link" data-title="Get status">Get status</a>
+                  </li>
+                  <li>
+                    <a href="#all-subscriptions" class="toc-h2 toc-link" data-title="All subscriptions">All subscriptions</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-a-subscription" class="toc-h2 toc-link" data-title="Cancel a subscription">Cancel a subscription</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='#'>Go to the manage portal</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the 8x API! You can use our API to interface with our smart contracts without knowing the underlying architeture.</p>
+
+<p>We have language bindings in JavaScript/Typescript. You can view code examples in the dark area to the right.</p>
+<h1 id='installation'>Installation</h1><h2 id='8x-js'>8x.js</h2>
+<p>Install the 8x.js SDK by simply running:</p>
+
+<p><code>npm install 8x.js</code></p>
+<h2 id='bignumber-js'>BigNumber.js</h2>
+<p>Since Solidity deals with integers up to 2^256, we need to utilise Bignumber.js to represent these large integers in Javascript (maximum 2^53).
+To ensure comaptibility make sure you install version 4.1.0 of Bignumber.js.</p>
+
+<p><code>npm install bignumber.js @ ^4.1.0</code></p>
+<h2 id='web3'>Web3</h2>
+<p>Web3 is a library used to interface with the blockchain. We&#39;re currently using version 0.2.0 as 1.0 introduces breaking changes.
+To ensure compatibility please make sure you install/pass a 0.2.0 version of web3 to 8x.js</p>
+
+<p><code>npm install web3 @ ^0.2.0</code></p>
+<h1 id='configuration'>Configuration</h1>
+<p>To utilise the 8x.js library simply import it by calling:</p>
+
+<p><code>import eightEx from &#39;8x.js&#39;</code></p>
+
+<p>After you&#39;ve done that you&#39;ll need to instantiate an instance of <code>eightEx</code> by passing a <code>web3</code> instance and an <code>AddressBook</code>.</p>
+<h2 id='address-book'>Address Book</h2>
+<p>What&#39;s an address book you may be asking? Good question. In order to interact with 8x.js you&#39;ll need to pass the relevant contract addresses for the network you&#39;d like to interface with.</p>
+
+<p>Here&#39;s how an <code>AddressBook</code> looks like:</p>
+<pre class="highlight typescript tab-typescript"><code><span class="p">{</span>
+  <span class="nx">approvedRegistryAddress</span><span class="p">?:</span> <span class="nx">Address</span><span class="p">;</span>
+  <span class="nx">executorAddress</span><span class="p">?:</span> <span class="nx">Address</span><span class="p">;</span>
+  <span class="nx">paymentRegistryAddress</span><span class="p">?:</span> <span class="nx">Address</span><span class="p">;</span>
+  <span class="nx">requirementsAddress</span><span class="p">?:</span> <span class="nx">Address</span><span class="p">;</span>
+  <span class="nx">stakeContractAddress</span><span class="p">?:</span> <span class="nx">Address</span><span class="p">;</span>
+  <span class="nx">transferProxyAddress</span><span class="p">?:</span> <span class="nx">Address</span><span class="p">;</span>
+  <span class="nx">volumeSubscriptionAddress</span><span class="p">?:</span> <span class="nx">Address</span><span class="p">;</span>
+  <span class="nx">transactingTokenAddress</span><span class="p">?:</span> <span class="nx">Address</span><span class="p">;</span>
+  <span class="nx">kyberAdress</span><span class="p">?:</span> <span class="nx">Address</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+<p>As you can see to the right, all the parameters are optional however we recommend you passing in all the addresses to ensure everything works as expected.</p>
+
+<p>You can get a list of the currently deployed addresses from <a href="https://github.com/8xprotocol/monorepo/blob/master/packages/artifacts/src/addresses/config.json">HERE</a></p>
+<h2 id='web3-2'>Web3</h2>
+<p>In case you&#39;ve never worked with Web3, an easy way to get an instance of it is from the user&#39;s browser (assuming they have it).</p>
+<pre class="highlight typescript tab-typescript"><code><span class="kd">const</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">web3</span><span class="p">.</span><span class="nx">currentProvider</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">web3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Web3</span><span class="p">(</span><span class="nx">provider</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>NOTE: You won&#39;t be able to do this in the near future as Metamask is deprecating the ability for applications to pull web3 directly from a user&#39;s browser.</p>
+</blockquote>
+<h1 id='plans'>Plans</h1>
+<p>The plans API primarily provides functionality for a business to create, get and cancel subscription plans.
+A subscription plan is required in order to link a user&#39;s commitment with static on-chain data which can&#39;t
+be manipulated (with the exception of a title and description). </p>
+<h2 id='create-plan'>Create plan</h2>
+<p><code>create</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+   <span class="nx">owner</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+   <span class="nx">identifier</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+   <span class="nx">interval</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span>
+   <span class="nx">amount</span><span class="p">:</span> <span class="nx">BigNumber</span><span class="p">,</span>
+   <span class="nx">fee</span><span class="p">:</span> <span class="nx">BigNumber</span><span class="p">,</span>
+   <span class="nx">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+   <span class="nx">description</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+   <span class="nx">imageUrl</span><span class="p">:</span> <span class="p">(</span><span class="kr">string</span> <span class="o">|</span> <span class="kc">null</span><span class="p">),</span>
+   <span class="nx">metaData</span><span class="p">:</span> <span class="p">(</span><span class="nx">JSON</span> <span class="o">|</span> <span class="kc">null</span><span class="p">),</span>
+   <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Bytes32</span><span class="o">&gt;</span> 
+</code></pre>
+<p>A subscription plan is needed in order to provide an instance for a consumer to subscribe to.</p>
+<h3 id='request-parameters'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>owner</td>
+<td>string</td>
+<td>Owner of the subscription</td>
+</tr>
+<tr>
+<td>identifier</td>
+<td>string</td>
+<td>External identifier to use to retrieve subscribers</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>number</td>
+<td>Interval, in days, to charge a user</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>BigNumber</td>
+<td>Amount to charge a user</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>BigNumber</td>
+<td>Amount to set as the processing fee</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Your organisation/name (eg &#39;Netflix&#39;, &#39;SaaS dApp&#39;). Shown to user.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Description for your plan (eg &#39;Premium Plan&#39;). Shown to user.</td>
+</tr>
+<tr>
+<td>imageUrl</td>
+<td>(string &#x7c; null)</td>
+<td>Logo for your busines/plan. Shown to user.</td>
+</tr>
+<tr>
+<td>metaData</td>
+<td>(JSON &#x7c; null)</td>
+<td>Any extra data you&#39;d like to store on-chain (JSON format).</td>
+</tr>
+<tr>
+<td>txData</td>
+<td>TxData</td>
+<td>Provide signer, gas and gasPrice information (optional).</td>
+</tr>
+</tbody></table>
+<h2 id='get-plan'>Get plan</h2>
+<p><code>get</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+   <span class="nx">planHash</span><span class="p">:</span> <span class="kr">string</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Plan</span><span class="o">&gt;</span> 
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+   owner: '0xbn38s...',
+   tokenAddress: '0xfns83c...',
+   identifier: 'com.your.plan.identifier',
+   interval: 30,
+   amount: 1000000000000000000, // Most token use 18 decimal places so this is actually 10
+   fee: 10000000000000000, // Similarly, this is actuall 1/10 of a token
+   data: '',
+   name: 'Netflix',
+   description: 'Premium plan',
+   imageUrl: 'https://netflix.com/logo,
+   terminationDate: 155324929, // (epoch - seconds)
+}
+</code></pre>
+<p>Retrieve the details of a subscription plan</p>
+<h3 id='request-parameters-2'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>planHash</td>
+<td>string</td>
+<td>Plan hash returned upon creating a plan.</td>
+</tr>
+</tbody></table>
+<h2 id='get-all-plans'>Get all plans</h2>
+<p><code>getAllFor</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">getAllFor</span><span class="p">(</span>
+   <span class="nx">owner</span><span class="p">:</span> <span class="nx">Address</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Plan</span><span class="p">]</span><span class="o">&gt;</span> 
+</code></pre>
+<p>Find all the subscription plans you&#39;ve created.</p>
+<h3 id='request-parameters-3'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>owner</td>
+<td>Address</td>
+<td>The user who you&#39;d like to get plans for.</td>
+</tr>
+</tbody></table>
+<h2 id='get-subscribers'>Get subscribers</h2>
+<p><code>getSubscribers</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">getSubscribers</span><span class="p">(</span>
+   <span class="nx">planHash</span><span class="p">:</span> <span class="nx">Bytes32</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Subscription</span><span class="p">]</span><span class="o">&gt;</span> 
+</code></pre>
+<p>Get all the subscribers of a subscription plan</p>
+<h3 id='request-parameters-4'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>planHash</td>
+<td>Bytes32</td>
+<td>Plan hash returned upon creating a plan</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-plan'>Cancel plan</h2>
+<p><code>cancel</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">cancel</span><span class="p">(</span>
+   <span class="nx">planHash</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+   <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">TxHash</span><span class="o">&gt;</span> 
+</code></pre>
+<p>Cancel a subscription plan that you&#39;ve offered to your subscribers.</p>
+<h3 id='request-parameters-5'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>planHash</td>
+<td>string</td>
+<td>Plan hash returned upon creating a plan</td>
+</tr>
+<tr>
+<td>txData</td>
+<td>TxData</td>
+<td>Provide signer, gas and gasPrice information (optional).<code>response[ 0x58e5a0fc7fbc849eddc100d44e86276168a8c7baaa5604e44ba6f5eb8ba1b7eb ]</code></td>
+</tr>
+</tbody></table>
+<h1 id='subscriptions'>Subscriptions</h1>
+<p>The subscriptions api provides all the functionality for consumers to subscribe to 8x. A user must first subscribe to a subscription,
+and then they must activate it. Payment is only taken on activation. First time 8x users are required to give pre-authorisation before
+they can subscribe however. </p>
+<h2 id='check-pre-authorisation'>Check pre-authorisation</h2>
+<p><code>hasGivenAuthorisation</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">hasGivenAuthorisation</span><span class="p">(</span>
+   <span class="nx">owner</span><span class="p">:</span> <span class="nx">Address</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">boolean</span><span class="o">&gt;</span> 
+</code></pre>
+<p>In order for 8x to take tokens directly from a user&#39;s wallet, it needs authorisation from a user
+to do so. This permission is given through the ERC20 approve function. Through this
+functionality you can check whether a user has given approval to the Transfer Proxy (contract
+that can take tokens from a user directly).</p>
+<h3 id='request-parameters-6'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>owner</td>
+<td>Address</td>
+<td>The user to check whether allowance has been given or not<code>response[ true ]</code></td>
+</tr>
+</tbody></table>
+<h2 id='give-pre-authorisation'>Give pre-authorisation</h2>
+<p><code>giveAuthorisation</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">giveAuthorisation</span><span class="p">(</span>
+   <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">TxHash</span><span class="o">&gt;</span> 
+</code></pre>
+<p>Grant 8x the pre-authorisation to take tokens from a user&#39;s wallet directly. The
+pre-authorisation is given to the Transfer Proxy contract.</p>
+<h3 id='request-parameters-7'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>txData</td>
+<td>TxData</td>
+<td>Provide signer, gas and gasPrice information (optional).</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe'>Subscribe</h2>
+<p><code>subscribe</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span>
+   <span class="nx">planHash</span><span class="p">:</span> <span class="nx">Bytes32</span><span class="p">,</span>
+   <span class="nx">metaData</span><span class="p">:</span> <span class="p">(</span><span class="nx">JSON</span> <span class="o">|</span> <span class="kc">null</span><span class="p">),</span>
+   <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Bytes32</span><span class="o">&gt;</span> 
+</code></pre>
+<p>Subscribing links the user to the subscription plan. It does not take payment from the user.
+Payment is only taken when the activate subscription function is called. This is useful in scenarios
+where you might want to get a user&#39;s commitment and then charge them after a certain duration or amount of usage.</p>
+<h3 id='request-parameters-8'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>planHash</td>
+<td>Bytes32</td>
+<td>Unique identifying hash of the plan.</td>
+</tr>
+<tr>
+<td>metaData</td>
+<td>(JSON &#x7c; null)</td>
+<td>Any extra JSON data you&#39;d like to pass/store on-chain (optional).</td>
+</tr>
+<tr>
+<td>txData</td>
+<td>TxData</td>
+<td>Provide signer, gas and gasPrice information (optional).</td>
+</tr>
+</tbody></table>
+<h2 id='activate'>Activate</h2>
+<p><code>activate</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">activate</span><span class="p">(</span>
+   <span class="nx">subscriptionHash</span><span class="p">:</span> <span class="nx">Bytes32</span><span class="p">,</span>
+   <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">TxHash</span><span class="o">&gt;</span> 
+</code></pre>
+<p>This function can only be called once a user has subscribed as it requires a valid subscription hash.
+Provided that a user has subscribed and given authorisation to 8x, the activate function can be called
+by any user. We&#39;re still exploring the best way to lock this down while still providing enough flexibility.</p>
+<h3 id='request-parameters-9'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subscriptionHash</td>
+<td>Bytes32</td>
+<td>Unique subscription hash returned upon subscribing.</td>
+</tr>
+<tr>
+<td>txData</td>
+<td>TxData</td>
+<td>Provide signer, gas and gasPrice information (optional).</td>
+</tr>
+</tbody></table>
+<h2 id='get-status'>Get status</h2>
+<p><code>getStatus</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">getStatus</span><span class="p">(</span>
+   <span class="nx">subscriptionHash</span><span class="p">:</span> <span class="nx">Bytes32</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">string</span><span class="p">,</span> <span class="kr">boolean</span><span class="p">,</span> <span class="kr">boolean</span><span class="o">&gt;</span> 
+</code></pre>
+<p>Determine the current state of a subscription. It can either be &#39;active&#39;, &#39;processing&#39; or &#39;inactive&#39;.</p>
+
+<p>The processing state is a simply divisor of the interval of your subscription. Suppose the intervaldivisor is set at 7, then a 28 day subscription has a maximum of 4 days (plus a hour) to be processed.</p>
+
+<p>The extra hour is counted in the case a service node doesn&#39;t process a subscription and another node on the network can steal their tokens and process your subscription instead.</p>
+
+<p>When you call this function, we&#39;ll also let you know whether the user has enough tokens to pay for the subscription and if they&#39;ve revoked authorisation for 8x to take tokens from their wallet.</p>
+
+<p>You can decide how you&#39;d like to handle unprocessed subscriptions.</p>
+<pre class="highlight plaintext"><code>
+// In the following response, we see the status of a user who's subscription is being processed but has a low chance of not fufilling their recurring obligation.
+[
+   'processsing', // The subscription is being processed
+   'true', // The user has enough tokens to pay for the subscription
+   'true', // The user has given 8x enough allowance to take tokens from their wallet
+]
+
+</code></pre><h3 id='request-parameters-10'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subscriptionHash</td>
+<td>Bytes32</td>
+<td>Unique subscription hash returned upon subscribing.</td>
+</tr>
+</tbody></table>
+<h2 id='all-subscriptions'>All subscriptions</h2>
+<p><code>getSubscribed</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">getSubscribed</span><span class="p">(</span>
+   <span class="nx">user</span><span class="p">:</span> <span class="nx">Address</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Subscription</span><span class="p">]</span><span class="o">&gt;</span> 
+</code></pre>
+<p>Get all the subscriptions a user has subscribed to.</p>
+<h3 id='request-parameters-11'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>Address</td>
+<td>The user you&#39;d like to get subscriptions for</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-a-subscription'>Cancel a subscription</h2>
+<p><code>cancel</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">cancel</span><span class="p">(</span>
+   <span class="nx">subscriptionHash</span><span class="p">:</span> <span class="nx">Bytes32</span><span class="p">,</span>
+   <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">TxHash</span><span class="o">&gt;</span> 
+</code></pre>
+<p>Cancels a subscription and prevents payments from being taken next billing cycle.
+This can only be called by the user who created the subscription in the first place.</p>
+<h3 id='request-parameters-12'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subscriptionHash</td>
+<td>Bytes32</td>
+<td>Unique subscription hash returned upon subscribing.</td>
+</tr>
+<tr>
+<td>txData</td>
+<td>TxData</td>
+<td>Provide signer, gas and gasPrice information (optional).</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="typescript">typescript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
