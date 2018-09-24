@@ -444,7 +444,7 @@ be manipulated (with the exception of a title and description). </p>
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
    <span class="nx">owner</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
    <span class="nx">identifier</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
    <span class="nx">interval</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span>
@@ -523,7 +523,7 @@ be manipulated (with the exception of a title and description). </p>
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
    <span class="nx">planHash</span><span class="p">:</span> <span class="kr">string</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Plan</span><span class="o">&gt;</span> 
 </code></pre>
@@ -566,7 +566,7 @@ be manipulated (with the exception of a title and description). </p>
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">getAllFor</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">getAllFor</span><span class="p">(</span>
    <span class="nx">owner</span><span class="p">:</span> <span class="nx">Address</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Plan</span><span class="p">]</span><span class="o">&gt;</span> 
 </code></pre>
@@ -591,7 +591,7 @@ be manipulated (with the exception of a title and description). </p>
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">getSubscribers</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">getSubscribers</span><span class="p">(</span>
    <span class="nx">planHash</span><span class="p">:</span> <span class="nx">Bytes32</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Subscription</span><span class="p">]</span><span class="o">&gt;</span> 
 </code></pre>
@@ -616,7 +616,7 @@ be manipulated (with the exception of a title and description). </p>
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">cancel</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">plans</span><span class="p">.</span><span class="nx">cancel</span><span class="p">(</span>
    <span class="nx">planHash</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
    <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">TxHash</span><span class="o">&gt;</span> 
@@ -651,7 +651,7 @@ they can subscribe however. </p>
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">hasGivenAuthorisation</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">hasGivenAuthorisation</span><span class="p">(</span>
    <span class="nx">owner</span><span class="p">:</span> <span class="nx">Address</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">boolean</span><span class="o">&gt;</span> 
 </code></pre>
@@ -679,7 +679,7 @@ that can take tokens from a user directly).</p>
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">giveAuthorisation</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">giveAuthorisation</span><span class="p">(</span>
    <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">TxHash</span><span class="o">&gt;</span> 
 </code></pre>
@@ -705,7 +705,7 @@ pre-authorisation is given to the Transfer Proxy contract.</p>
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span>
    <span class="nx">planHash</span><span class="p">:</span> <span class="nx">Bytes32</span><span class="p">,</span>
    <span class="nx">metaData</span><span class="p">:</span> <span class="p">(</span><span class="nx">JSON</span> <span class="o">|</span> <span class="kc">null</span><span class="p">),</span>
    <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
@@ -744,7 +744,7 @@ where you might want to get a user&#39;s commitment and then charge them after a
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">activate</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">activate</span><span class="p">(</span>
    <span class="nx">subscriptionHash</span><span class="p">:</span> <span class="nx">Bytes32</span><span class="p">,</span>
    <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">TxHash</span><span class="o">&gt;</span> 
@@ -777,7 +777,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">getStatus</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">getStatus</span><span class="p">(</span>
    <span class="nx">subscriptionHash</span><span class="p">:</span> <span class="nx">Bytes32</span><span class="p">,</span>
    <span class="nx">plan</span><span class="p">:</span> <span class="nx">Plan</span><span class="p">,</span>
    <span class="nx">subscription</span><span class="p">:</span> <span class="nx">Subscription</span>
@@ -830,7 +830,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">getSubscribed</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">getSubscribed</span><span class="p">(</span>
    <span class="nx">user</span><span class="p">:</span> <span class="nx">Address</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Subscription</span><span class="p">]</span><span class="o">&gt;</span> 
 </code></pre>
@@ -855,7 +855,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 
 <span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
 
-<span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">cancel</span><span class="p">(</span>
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">cancel</span><span class="p">(</span>
    <span class="nx">subscriptionHash</span><span class="p">:</span> <span class="nx">Bytes32</span><span class="p">,</span>
    <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">TxHash</span><span class="o">&gt;</span> 
