@@ -621,6 +621,11 @@ be manipulated (with the exception of a title and description/JSON metadata). </
    <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">TxHash</span><span class="o">&gt;</span> 
 </code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>[ 0x58e5a0fc7fbc849eddc100d44e86276168a8c7baaa5604e44ba6f5eb8ba1b7eb ]
+</code></pre>
 <p>Cancel a subscription plan that you&#39;ve offered to your subscribers.</p>
 <h3 id='request-parameters-5'>Request Parameters</h3>
 <table><thead>
@@ -638,7 +643,7 @@ be manipulated (with the exception of a title and description/JSON metadata). </
 <tr>
 <td>txData</td>
 <td>TxData</td>
-<td>Provide signer, gas and gasPrice information (optional).<code>response[ 0x58e5a0fc7fbc849eddc100d44e86276168a8c7baaa5604e44ba6f5eb8ba1b7eb ]</code></td>
+<td>Provide signer, gas and gasPrice information (optional).</td>
 </tr>
 </tbody></table>
 <h1 id='subscriptions'>Subscriptions</h1>
@@ -655,6 +660,11 @@ they can subscribe however. </p>
    <span class="nx">owner</span><span class="p">:</span> <span class="nx">Address</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">boolean</span><span class="o">&gt;</span> 
 </code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>[ true ]
+</code></pre>
 <p>In order for 8x to take tokens directly from a user&#39;s wallet, it needs authorisation from a user
 to do so. This permission is given through the ERC20 approve function. Through this
 functionality you can check whether a user has given approval to the Transfer Proxy (contract
@@ -670,7 +680,7 @@ that can take tokens from a user directly).</p>
 <tr>
 <td>owner</td>
 <td>Address</td>
-<td>The user to check whether allowance has been given or not.<code>response[ true ]</code></td>
+<td>The user to check whether allowance has been given or not.</td>
 </tr>
 </tbody></table>
 <h2 id='give-pre-authorisation'>Give pre-authorisation</h2>
@@ -783,6 +793,16 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
    <span class="nx">subscription</span><span class="p">:</span> <span class="nx">Subscription</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">string</span><span class="p">,</span> <span class="kr">boolean</span><span class="p">,</span> <span class="kr">boolean</span><span class="o">&gt;</span> 
 </code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>// In the following response, we see the status of a user who's subscription is being processed but has a low chance of not fulfilling their recurring obligation.
+[
+   'processing', // The subscription is being processed
+   'true', // The user has enough tokens to pay for the subscription
+   'true', // The user has given 8x enough allowance to take tokens from their wallet
+]
+</code></pre>
 <p>Determine the current state of a subscription. It can either be &#39;active&#39;, &#39;processing&#39; or &#39;inactive&#39;.</p>
 
 <p>The processing state is a simply divisor of the interval of your subscription. Suppose the interval divisor is set at 7, then a 28-day subscription has a maximum of 4 days (plus an hour) to be processed.</p>
@@ -792,15 +812,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 <p>When you call this function, we&#39;ll also let you know whether the user has enough tokens to pay for the subscription and if they&#39;ve revoked authorisation for 8x to take tokens from their wallet.</p>
 
 <p>You can decide how you&#39;d like to handle unprocessed subscriptions.</p>
-<pre class="highlight plaintext"><code>
-// In the following response, we see the status of a user who's subscription is being processed but has a low chance of not fulfilling their recurring obligation.
-[
-   'processing', // The subscription is being processed
-   'true', // The user has enough tokens to pay for the subscription
-   'true', // The user has given 8x enough allowance to take tokens from their wallet
-]
-
-</code></pre><h3 id='request-parameters-10'>Request Parameters</h3>
+<h3 id='request-parameters-10'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
