@@ -224,10 +224,10 @@
                     <a href="#what-is-8x" class="toc-h2 toc-link" data-title="What is 8x?">What is 8x?</a>
                   </li>
                   <li>
-                    <a href="#what-do-i-need-to-do-charge-my-users" class="toc-h2 toc-link" data-title="What do I need to do charge my users?">What do I need to do charge my users?</a>
+                    <a href="#how-do-i-charge-my-users" class="toc-h2 toc-link" data-title="How do I charge my users?">How do I charge my users?</a>
                   </li>
                   <li>
-                    <a href="#what-do-i-need-to-know" class="toc-h2 toc-link" data-title="What do I need to know?">What do I need to know?</a>
+                    <a href="#how-do-i-know-if-a-user-has-paid" class="toc-h2 toc-link" data-title="How do I know if a user has paid?">How do I know if a user has paid?</a>
                   </li>
               </ul>
           </li>
@@ -334,21 +334,21 @@
 <p>8x is a Ethereum based protocol to facilitate the transfer of recurring subscription payments.</p>
 
 <p>The key issue 8x solves is the inability to schedule a transaction on a blockchain every month, automatically.
-We solve this through a network of layer 2 service nodes that actively watch for subscriptions that need to be processed, execute it on behalf of the user, pay the required gas fee and are earn a fee.</p>
+We solve this through a network of layer 2 service nodes that actively watch for subscriptions that need to be processed, execute it on behalf of the user, and earn a fee.</p>
 
-<p>In the case that a service node doesn&#39;t excecute a subscription, their tokens are stolen from another node and the subcription is processed. This ensures that subscriptions don&#39;t go unprocessed forever.</p>
-<h2 id='what-do-i-need-to-do-charge-my-users'>What do I need to do charge my users?</h2>
-<p>There&#39;s a few steps at the moment, however we plan to simplify this in upcoming interations of the protocol.</p>
+<p>In the case that a service node doesn&#39;t execute a subscription, another node can steal their tokens and process the subscription. This ensures that subscriptions don&#39;t go unprocessed forever.</p>
+<h2 id='how-do-i-charge-my-users'>How do I charge my users?</h2>
+<p>There are a few steps at the moment, however, we plan to simplify this in the upcoming iterations of the protocol.</p>
 
 <ol>
 <li>Create a subscription plan, plan hash returned on success</li>
-<li>Check if user has given allownace (ERC20) to 8x</li>
+<li>Check if the user has given allowance (ERC20) to 8x</li>
 <li>If not, give approval</li>
-<li>User subscribes by using a plan hash, subscription hash returned on success</li>
-<li>User activates subscription, first payment is made</li>
+<li>The user subscribes by using a plan hash, subscription hash returned on success</li>
+<li>The user activates the subscription, the first payment is made</li>
 </ol>
-<h2 id='what-do-i-need-to-know'>What do I need to know?</h2>
-<p>Not much, except for the fact that a subscription can have 3 states:</p>
+<h2 id='how-do-i-know-if-a-user-has-paid'>How do I know if a user has paid?</h2>
+<p>A subscription can have 3 states:</p>
 
 <ul>
 <li>Active</li>
@@ -356,27 +356,27 @@ We solve this through a network of layer 2 service nodes that actively watch for
 <li>Inactive</li>
 </ul>
 
-<p>If a the subscription is being processed, you&#39;ll know whether the user has enough funds in their wallet and if 8x has authorisation to take funds from their wallet.</p>
+<p>If a subscription is being processed, you&#39;ll know whether the user has enough funds in their wallet and if 8x has the authorisation to take funds from their wallet.</p>
+
+<p>It&#39;s up to you how you would like to handle the processing state.</p>
 
 <blockquote>
 <p>There is a maximum time period for how long a subscription can be under processing.</p>
 </blockquote>
-
-<p>It&#39;s up to you how you would like to handle the processing state.</p>
 <h1 id='installation'>Installation</h1>
-<p>We have language bindings in JavaScript/Typescript. You can view code examples in the dark area to the right.</p>
+<p>Our library is written in Typescript and utilises other 8x Protocol packages.</p>
 <h3 id='8x-js'>8x.js</h3>
 <p>Install the 8x.js SDK by simply running:</p>
 
 <p><code>npm install 8x.js</code></p>
 <h3 id='bignumber-js'>BigNumber.js</h3>
-<p>Since Solidity deals with integers up to 2^256, we need to utilise Bignumber.js to represent these large integers in Javascript (maximum 2^53).
-To ensure comaptibility make sure you install version 4.1.0 of Bignumber.js.</p>
+<p>Since Solidity deals with integers up to 2^256, we need to utilise Bignumber.js to represent large integers in Javascript (maximum 2^53).
+To ensure compatibility make sure you install version 4.1.0 of Bignumber.js.</p>
 
 <p><code>npm install bignumber.js @ ^4.1.0</code></p>
 <h3 id='web3'>Web3</h3>
-<p>Web3 is a library used to interface with the blockchain. We&#39;re currently using version 0.2.0 as 1.0 introduces breaking changes.
-To ensure compatibility please make sure you install/pass a 0.2.0 version of web3 to 8x.js</p>
+<p>Web3 is a library used to interface with the blockchain. We&#39;re currently using version 0.2.0 as 1.0.0 introduces breaking changes.
+To ensure compatibility please make sure you instantiate a 0.2.0 version of web3 to 8x.js</p>
 
 <p><code>npm install web3 @ ^0.2.0</code></p>
 <h1 id='configuration'>Configuration</h1>
@@ -386,7 +386,7 @@ To ensure compatibility please make sure you install/pass a 0.2.0 version of web
 
 <p>After you&#39;ve done that you&#39;ll need to instantiate an instance of <code>eightEx</code> by passing a <code>web3</code> instance and an <code>AddressBook</code>.</p>
 <h2 id='address-book'>Address Book</h2>
-<p>What&#39;s an address book you may be asking? Good question. In order to interact with 8x.js you&#39;ll need to pass the relevant contract addresses for the network you&#39;d like to interface with.</p>
+<p>In order to interact with 8x.js, you&#39;ll need to pass the relevant contract addresses based on the network you&#39;d like to interface with.</p>
 
 <p>Here&#39;s how an <code>AddressBook</code> looks like:</p>
 <pre class="highlight typescript tab-typescript"><code><span class="p">{</span>
@@ -401,9 +401,9 @@ To ensure compatibility please make sure you install/pass a 0.2.0 version of web
   <span class="nx">kyberAdress</span><span class="p">?:</span> <span class="nx">Address</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
-<p>As you can see to the right, all the parameters are optional however we recommend you passing in all the addresses to ensure everything works as expected.</p>
+<p>All the parameters are optional, however, we recommend you pass through all the addresses to ensure everything works as expected.</p>
 
-<p>You can get a list of the currently deployed addresses from <a href="https://github.com/8xprotocol/monorepo/blob/master/packages/artifacts/src/addresses/config.json">HERE</a></p>
+<p>You can get a list of the currently deployed addresses from <a href="https://github.com/8xprotocol/monorepo/blob/master/packages/artifacts/src/addresses/config.json">here</a></p>
 <h2 id='web3-2'>Web3</h2>
 <p>In case you&#39;ve never worked with Web3, an easy way to get an instance of it is from the user&#39;s browser (assuming they have it).</p>
 <pre class="highlight typescript tab-typescript"><code><span class="kd">const</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">web3</span><span class="p">.</span><span class="nx">currentProvider</span><span class="p">;</span>
@@ -433,11 +433,11 @@ To ensure compatibility please make sure you install/pass a 0.2.0 version of web
 </code></pre>
 <p>To make a long story short, here&#39;s how you might instantiate an instance of 8x (shown to the right).</p>
 
-<p>We highly recommend passing in all the addresses, however if you know <em>for sure</em> you&#39;re not going to be interacting with certain components then feel free to not pass in that contract&#39;s address.</p>
+<p>We highly recommend passing in all the addresses, however, if you know <em>for sure</em> you&#39;re not going to be interacting with certain components then feel free to not pass in that contract&#39;s address.</p>
 <h1 id='plans'>Plans</h1>
 <p>The plans API primarily provides functionality for a business to create, get and cancel subscription plans.
-A subscription plan is required in order to link a user&#39;s commitment with static on-chain data which can&#39;t
-be manipulated (with the exception of a title and description). </p>
+A subscription plan is required in order to link a user&#39;s commitment with static on-chain payment plan which can&#39;t
+be manipulated (with the exception of a title and description/JSON metadata). </p>
 <h2 id='create-plan'>Create plan</h2>
 <p><code>create</code></p>
 <pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
@@ -469,27 +469,27 @@ be manipulated (with the exception of a title and description). </p>
 <tr>
 <td>owner</td>
 <td>string</td>
-<td>Owner of the subscription</td>
+<td>Owner of the subscription.</td>
 </tr>
 <tr>
 <td>identifier</td>
 <td>string</td>
-<td>External identifier to use to retrieve subscribers</td>
+<td>External identifier to use to retrieve subscribers.</td>
 </tr>
 <tr>
 <td>interval</td>
 <td>number</td>
-<td>Interval, in seconds, to charge a user</td>
+<td>Interval, in seconds, to charge a user.</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>BigNumber</td>
-<td>Amount to charge a user</td>
+<td>Amount to charge a user.</td>
 </tr>
 <tr>
 <td>fee</td>
 <td>BigNumber</td>
-<td>Amount to set as the processing fee</td>
+<td>Amount to set as the processing fee.</td>
 </tr>
 <tr>
 <td>name</td>
@@ -535,17 +535,17 @@ be manipulated (with the exception of a title and description). </p>
    tokenAddress: '0xfns83c...',
    identifier: 'com.your.plan.identifier',
    interval: 30,
-   amount: 1000000000000000000, // Most token use 18 decimal places so this is actually 10
-   fee: 10000000000000000, // Similarly, this is actuall 1/10 of a token
+   amount: 1000000000000000000, // Most token use 18 decimal places so this large amount translates to 10 tokens
+   fee: 10000000000000000, // Similarly, this is actually 1/10 of a token
    data: '',
    name: 'Netflix',
    description: 'Premium plan',
    imageUrl: 'https://netflix.com/logo,
-   terminationDate: 155324929, // (epoch - seconds),
+   terminationDate: 155324929, // (epoch in seconds),
    planHash: '0xd834n2k...'
 }
 </code></pre>
-<p>Retrieve the details of a subscription plan</p>
+<p>Retrieve the details of a subscription plan.</p>
 <h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
@@ -595,7 +595,7 @@ be manipulated (with the exception of a title and description). </p>
    <span class="nx">planHash</span><span class="p">:</span> <span class="nx">Bytes32</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Subscription</span><span class="p">]</span><span class="o">&gt;</span> 
 </code></pre>
-<p>Get all the subscribers of a subscription plan</p>
+<p>Get all the subscribers of a subscription plan.</p>
 <h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
@@ -607,7 +607,7 @@ be manipulated (with the exception of a title and description). </p>
 <tr>
 <td>planHash</td>
 <td>Bytes32</td>
-<td>Plan hash returned upon creating a plan</td>
+<td>Plan hash returned upon creating a plan.</td>
 </tr>
 </tbody></table>
 <h2 id='cancel-plan'>Cancel plan</h2>
@@ -633,7 +633,7 @@ be manipulated (with the exception of a title and description). </p>
 <tr>
 <td>planHash</td>
 <td>string</td>
-<td>Plan hash returned upon creating a plan</td>
+<td>Plan hash returned upon creating a plan.</td>
 </tr>
 <tr>
 <td>txData</td>
@@ -670,7 +670,7 @@ that can take tokens from a user directly).</p>
 <tr>
 <td>owner</td>
 <td>Address</td>
-<td>The user to check whether allowance has been given or not<code>response[ true ]</code></td>
+<td>The user to check whether allowance has been given or not.<code>response[ true ]</code></td>
 </tr>
 </tbody></table>
 <h2 id='give-pre-authorisation'>Give pre-authorisation</h2>
@@ -712,7 +712,7 @@ pre-authorisation is given to the Transfer Proxy contract.</p>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Bytes32</span><span class="o">&gt;</span> 
 </code></pre>
 <p>Subscribing links the user to the subscription plan. It does not take payment from the user.
-Payment is only taken when the activate subscription function is called. This is useful in scenarios
+Payment is only taken when the subscription is activated. This is useful in scenarios
 where you might want to get a user&#39;s commitment and then charge them after a certain duration or amount of usage.</p>
 <h3 id='request-parameters-8'>Request Parameters</h3>
 <table><thead>
@@ -749,7 +749,7 @@ where you might want to get a user&#39;s commitment and then charge them after a
    <span class="nx">txData</span><span class="p">:</span> <span class="nx">TxData</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">TxHash</span><span class="o">&gt;</span> 
 </code></pre>
-<p>This function can only be called once a user has subscribed as it requires a valid subscription hash.
+<p>Makes first payment. This function can only be called once a user has subscribed to a subscription plan.
 Provided that a user has subscribed and given authorisation to 8x, the activate function can be called
 by any user. We&#39;re still exploring the best way to lock this down while still providing enough flexibility.</p>
 <h3 id='request-parameters-9'>Request Parameters</h3>
@@ -785,7 +785,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 </code></pre>
 <p>Determine the current state of a subscription. It can either be &#39;active&#39;, &#39;processing&#39; or &#39;inactive&#39;.</p>
 
-<p>The processing state is a simply divisor of the interval of your subscription. Suppose the intervaldivisor is set at 7, then a 28 day subscription has a maximum of 4 days (plus a hour) to be processed.</p>
+<p>The processing state is a simply divisor of the interval of your subscription. Suppose the interval divisor is set at 7, then a 28-day subscription has a maximum of 4 days (plus an hour) to be processed.</p>
 
 <p>The extra hour is counted in the case a service node doesn&#39;t process a subscription and another node on the network can steal their tokens and process your subscription instead.</p>
 
@@ -793,9 +793,9 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 
 <p>You can decide how you&#39;d like to handle unprocessed subscriptions.</p>
 <pre class="highlight plaintext"><code>
-// In the following response, we see the status of a user who's subscription is being processed but has a low chance of not fufilling their recurring obligation.
+// In the following response, we see the status of a user who's subscription is being processed but has a low chance of not fulfilling their recurring obligation.
 [
-   'processsing', // The subscription is being processed
+   'processing', // The subscription is being processed
    'true', // The user has enough tokens to pay for the subscription
    'true', // The user has given 8x enough allowance to take tokens from their wallet
 ]
@@ -816,12 +816,12 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 <tr>
 <td>plan</td>
 <td>Plan</td>
-<td>Pass an existing plan object to prevent refetching</td>
+<td>Pass an existing plan object to prevent refetching.</td>
 </tr>
 <tr>
 <td>subscription</td>
 <td>Subscription</td>
-<td>Pass an existing subscription object to prevent refetching</td>
+<td>Pass an existing subscription object to prevent refetching.</td>
 </tr>
 </tbody></table>
 <h2 id='all-subscriptions'>All subscriptions</h2>
@@ -834,7 +834,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
    <span class="nx">user</span><span class="p">:</span> <span class="nx">Address</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Subscription</span><span class="p">]</span><span class="o">&gt;</span> 
 </code></pre>
-<p>Get all the subscriptions a user has subscribed to.</p>
+<p>Get all the subscriptions a user has subscribed to..</p>
 <h3 id='request-parameters-11'>Request Parameters</h3>
 <table><thead>
 <tr>
@@ -846,7 +846,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 <tr>
 <td>user</td>
 <td>Address</td>
-<td>The user you&#39;d like to get subscriptions for</td>
+<td>The user you&#39;d like to get subscriptions for.</td>
 </tr>
 </tbody></table>
 <h2 id='cancel-a-subscription'>Cancel a subscription</h2>
