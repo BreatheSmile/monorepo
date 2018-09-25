@@ -794,6 +794,18 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
    <span class="nx">subscriptionHash</span><span class="p">:</span> <span class="nx">Bytes32</span>
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Subscription</span><span class="o">&gt;</span> 
 </code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+   owner: '0xdfLqn83...',
+   tokenAddress: '0xw9s3mfd...',
+   planHash: '0xwjw93m3sd...',
+   lastPaymentDate: 155321434, // (epoch in seconds)
+   terminationDate: 155452222, // (epoch in seconds)
+   subscriptionHash: '0xhad93d...',
+}
+</code></pre>
 <p>Get a subscription using the subscription hash.</p>
 <h3 id='request-parameters-10'>Request Parameters</h3>
 <table><thead>
@@ -806,7 +818,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 <tr>
 <td>subscriptionHash</td>
 <td>Bytes32</td>
-<td>Unique subscription hash returned upon subscribing.response<code>{   owner: &#39;0xdfLqn83...&#39;,   tokenAddress: &#39;0xw9s3mfd...&#39;,   planHash: &#39;0xwjw93m3sd...&#39;,   lastPaymentDate: 155321434, // (epoch in seconds)   terminationDate: 155452222, // (epoch in seconds)   subscriptionHash: &#39;0xhad93d...&#39;,}</code></td>
+<td>Unique subscription hash returned upon subscribing.</td>
 </tr>
 </tbody></table>
 <h2 id='get-status'>Get status</h2>
