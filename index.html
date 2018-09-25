@@ -295,6 +295,9 @@
                     <a href="#activate" class="toc-h2 toc-link" data-title="Activate">Activate</a>
                   </li>
                   <li>
+                    <a href="#get-subscription" class="toc-h2 toc-link" data-title="Get subscription">Get subscription</a>
+                  </li>
+                  <li>
                     <a href="#get-status" class="toc-h2 toc-link" data-title="Get status">Get status</a>
                   </li>
                   <li>
@@ -781,6 +784,31 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 <td>Provide signer, gas and gasPrice information (optional).</td>
 </tr>
 </tbody></table>
+<h2 id='get-subscription'>Get subscription</h2>
+<p><code>get</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+   <span class="nx">subscriptionHash</span><span class="p">:</span> <span class="nx">Bytes32</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Subscription</span><span class="o">&gt;</span> 
+</code></pre>
+<p>Get a subscription using the subscription hash.</p>
+<h3 id='request-parameters-10'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subscriptionHash</td>
+<td>Bytes32</td>
+<td>Unique subscription hash returned upon subscribing.response<code>{   owner: &#39;0xdfLqn83...&#39;,   tokenAddress: &#39;0xw9s3mfd...&#39;,   planHash: &#39;0xwjw93m3sd...&#39;,   lastPaymentDate: 155321434, // (epoch in seconds)   terminationDate: 155452222, // (epoch in seconds)   subscriptionHash: &#39;0xhad93d...&#39;,}</code></td>
+</tr>
+</tbody></table>
 <h2 id='get-status'>Get status</h2>
 <p><code>getStatus</code></p>
 <pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
@@ -812,7 +840,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 <p>When you call this function, we&#39;ll also let you know whether the user has enough tokens to pay for the subscription and if they&#39;ve revoked authorisation for 8x to take tokens from their wallet.</p>
 
 <p>You can decide how you&#39;d like to handle unprocessed subscriptions.</p>
-<h3 id='request-parameters-10'>Request Parameters</h3>
+<h3 id='request-parameters-11'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -847,7 +875,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Subscription</span><span class="p">]</span><span class="o">&gt;</span> 
 </code></pre>
 <p>Get all the subscriptions a user has subscribed to..</p>
-<h3 id='request-parameters-11'>Request Parameters</h3>
+<h3 id='request-parameters-12'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -874,7 +902,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 </code></pre>
 <p>Cancels a subscription and prevents payments from being taken next billing cycle.
 This can only be called by the user who created the subscription in the first place.</p>
-<h3 id='request-parameters-12'>Request Parameters</h3>
+<h3 id='request-parameters-13'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
