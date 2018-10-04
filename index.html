@@ -218,11 +218,19 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#what-is-8x" class="toc-h1 toc-link" data-title="What is 8x?">What is 8x?</a>
+          </li>
+          <li>
+            <a href="#easy-integration" class="toc-h1 toc-link" data-title="Easy Integration">Easy Integration</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#what-is-8x" class="toc-h2 toc-link" data-title="What is 8x?">What is 8x?</a>
+                    <a href="#checking-subscription-status" class="toc-h2 toc-link" data-title="Checking subscription status">Checking subscription status</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-introduction" class="toc-h1 toc-link" data-title="API Introduction">API Introduction</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#how-do-i-charge-my-users" class="toc-h2 toc-link" data-title="How do I charge my users?">How do I charge my users?</a>
                   </li>
@@ -256,6 +264,14 @@
                   </li>
                   <li>
                     <a href="#eightex" class="toc-h2 toc-link" data-title="EightEx">EightEx</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#blockchain" class="toc-h1 toc-link" data-title="Blockchain">Blockchain</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#wait-for-transaction" class="toc-h2 toc-link" data-title="Wait for transaction">Wait for transaction</a>
                   </li>
               </ul>
           </li>
@@ -333,13 +349,46 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1><h2 id='what-is-8x'>What is 8x?</h2>
+        <h1 id='what-is-8x'>What is 8x?</h1>
 <p>8x is a Ethereum based protocol to facilitate the transfer of recurring subscription payments.</p>
 
 <p>The key issue 8x solves is the inability to schedule a transaction on a blockchain every month, automatically.
 We solve this through a network of layer 2 service nodes that actively watch for subscriptions that need to be processed, execute it on behalf of the user, and earn a fee.</p>
 
 <p>In the case that a service node doesn&#39;t execute a subscription, another node can steal their tokens and process the subscription. This ensures that subscriptions don&#39;t go unprocessed forever.</p>
+<h1 id='easy-integration'>Easy Integration</h1>
+<p>In order to make receiving payments as simple as possible, we&#39;ve made the whole process take less than 2 minutes (depending on how long <code>npm install</code> takes 😬).</p>
+
+<p>Please note we currently only support React. We&#39;ll be adding support for drag and drop HTML soon though!</p>
+<pre class="highlight plaintext"><code>&lt;EightExPay
+  planHash='0x..'
+  activation={(subscriptionHash) =&gt; {
+    // The subscription hash is the identifier to track the status of a user's subscription
+    // This also means the checkout process went through smoothly
+    console.log('$$$');
+  })
+/&gt;
+</code></pre>
+<ol>
+<li>Create a subscription plan by heading over to the <a href="https://manage.8xprotocol.com">manage portal</a></li>
+<li>Run <code>npm install 8x.pay</code></li>
+<li>Add <code>&lt;EightExPay planHash=&#39;0x...&#39;/&gt;</code> in your react file</li>
+<li>That&#39;s it! You can now charge your users subscription payments on the blockchain!</li>
+</ol>
+
+<blockquote>
+<p>Your plan hash is shown below your plan in the manage portal</p>
+</blockquote>
+
+<p>IMPORTANT: While testing please make sure you do not subscribe to your own plan. Ensure you have a separate account for the business and consumer.</p>
+
+<p>All functionality only runs on Kovan at this stage.</p>
+<h2 id='checking-subscription-status'>Checking subscription status</h2>
+<p>We currently don&#39;t support callback URLs (in our immediate roadmap though). However, you can query using <code>8x.js</code> to check the status of a subscription using the subscription hash.</p>
+
+<p>We recommend reading the <code>Subscriptions</code> section of the documentation for more information.</p>
+<h1 id='api-introduction'>API Introduction</h1>
+<p>In the case you don&#39;t use React or want more granular control over the implementation...</p>
 <h2 id='how-do-i-charge-my-users'>How do I charge my users?</h2>
 <p>There are a few steps at the moment, however, we plan to simplify this in the upcoming iterations of the protocol.</p>
 
@@ -437,6 +486,46 @@ To ensure compatibility please make sure you instantiate a 0.2.0 version of web3
 <p>To make a long story short, here&#39;s how you might instantiate an instance of 8x (shown to the right).</p>
 
 <p>We highly recommend passing in all the addresses, however, if you know <em>for sure</em> you&#39;re not going to be interacting with certain components then feel free to not pass in that contract&#39;s address.</p>
+<h1 id='blockchain'>Blockchain</h1>
+<p>The blockchain API provides a convenient way to interact with the blockchain, such as waiting for a transaction to be processed. </p>
+<h2 id='wait-for-transaction'>Wait for transaction</h2>
+<p><code>awaitTransactionMinedAsync</code></p>
+<pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="nx">eightEx</span> <span class="k">from</span> <span class="s1">'8x.js'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">eightEx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EightEx</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span> <span class="nx">addressBook</span><span class="p">);</span>
+
+<span class="k">await</span> <span class="nx">eightEx</span><span class="p">.</span><span class="nx">blockchain</span><span class="p">.</span><span class="nx">awaitTransactionMinedAsync</span><span class="p">(</span>
+   <span class="nx">txHash</span><span class="p">:</span> <span class="nx">TxHash</span><span class="p">,</span>
+   <span class="nx">pollingIntervalMs</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span>
+   <span class="nx">timeoutMs</span><span class="p">:</span> <span class="kr">number</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">TransactionReceipt</span><span class="o">&gt;</span> 
+</code></pre>
+<p>This function will wait until a transaction has been mined on the blockchain. Especially
+useuful for providing end users with feedback on the status of their transaction.</p>
+<h3 id='request-parameters'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>txHash</td>
+<td>TxHash</td>
+<td>Hash of the transaction</td>
+</tr>
+<tr>
+<td>pollingIntervalMs</td>
+<td>number</td>
+<td>How often would you like the blockchain to be polled. Default value is set at 1,000ms (1s)</td>
+</tr>
+<tr>
+<td>timeoutMs</td>
+<td>number</td>
+<td>After how long should the operation timeout.  Default value is set at 60,000ms (60s).</td>
+</tr>
+</tbody></table>
 <h1 id='plans'>Plans</h1>
 <p>The plans API primarily provides functionality for a business to create, get and cancel subscription plans.
 A subscription plan is required in order to link a user&#39;s commitment with static on-chain payment plan which can&#39;t
@@ -461,7 +550,7 @@ be manipulated (with the exception of a title and description/JSON metadata). </
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Bytes32</span><span class="o">&gt;</span> 
 </code></pre>
 <p>A subscription plan is needed in order to provide an instance for a consumer to subscribe to.</p>
-<h3 id='request-parameters'>Request Parameters</h3>
+<h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -549,7 +638,7 @@ be manipulated (with the exception of a title and description/JSON metadata). </
 }
 </code></pre>
 <p>Retrieve the details of a subscription plan.</p>
-<h3 id='request-parameters-2'>Request Parameters</h3>
+<h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -574,7 +663,7 @@ be manipulated (with the exception of a title and description/JSON metadata). </
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Plan</span><span class="p">]</span><span class="o">&gt;</span> 
 </code></pre>
 <p>Find all the subscription plans you&#39;ve created.</p>
-<h3 id='request-parameters-3'>Request Parameters</h3>
+<h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -599,7 +688,7 @@ be manipulated (with the exception of a title and description/JSON metadata). </
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Subscription</span><span class="p">]</span><span class="o">&gt;</span> 
 </code></pre>
 <p>Get all the subscribers of a subscription plan.</p>
-<h3 id='request-parameters-4'>Request Parameters</h3>
+<h3 id='request-parameters-5'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -630,7 +719,7 @@ be manipulated (with the exception of a title and description/JSON metadata). </
 <pre class="highlight plaintext"><code>[ 0x58e5a0fc7fbc849eddc100d44e86276168a8c7baaa5604e44ba6f5eb8ba1b7eb ]
 </code></pre>
 <p>Cancel a subscription plan that you&#39;ve offered to your subscribers.</p>
-<h3 id='request-parameters-5'>Request Parameters</h3>
+<h3 id='request-parameters-6'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -672,7 +761,7 @@ they can subscribe however. </p>
 to do so. This permission is given through the ERC20 approve function. Through this
 functionality you can check whether a user has given approval to the Transfer Proxy (contract
 that can take tokens from a user directly).</p>
-<h3 id='request-parameters-6'>Request Parameters</h3>
+<h3 id='request-parameters-7'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -698,7 +787,7 @@ that can take tokens from a user directly).</p>
 </code></pre>
 <p>Grant 8x the pre-authorisation to take tokens from a user&#39;s wallet directly. The
 pre-authorisation is given to the Transfer Proxy contract.</p>
-<h3 id='request-parameters-7'>Request Parameters</h3>
+<h3 id='request-parameters-8'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -727,7 +816,7 @@ pre-authorisation is given to the Transfer Proxy contract.</p>
 <p>Subscribing links the user to the subscription plan. It does not take payment from the user.
 Payment is only taken when the subscription is activated. This is useful in scenarios
 where you might want to get a user&#39;s commitment and then charge them after a certain duration or amount of usage.</p>
-<h3 id='request-parameters-8'>Request Parameters</h3>
+<h3 id='request-parameters-9'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -765,7 +854,7 @@ where you might want to get a user&#39;s commitment and then charge them after a
 <p>Makes first payment. This function can only be called once a user has subscribed to a subscription plan.
 Provided that a user has subscribed and given authorisation to 8x, the activate function can be called
 by any user. We&#39;re still exploring the best way to lock this down while still providing enough flexibility.</p>
-<h3 id='request-parameters-9'>Request Parameters</h3>
+<h3 id='request-parameters-10'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -807,7 +896,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 }
 </code></pre>
 <p>Get a subscription using the subscription hash.</p>
-<h3 id='request-parameters-10'>Request Parameters</h3>
+<h3 id='request-parameters-11'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -852,7 +941,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 <p>When you call this function, we&#39;ll also let you know whether the user has enough tokens to pay for the subscription and if they&#39;ve revoked authorisation for 8x to take tokens from their wallet.</p>
 
 <p>You can decide how you&#39;d like to handle unprocessed subscriptions.</p>
-<h3 id='request-parameters-11'>Request Parameters</h3>
+<h3 id='request-parameters-12'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -887,7 +976,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 <span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">Subscription</span><span class="p">]</span><span class="o">&gt;</span> 
 </code></pre>
 <p>Get all the subscriptions a user has subscribed to..</p>
-<h3 id='request-parameters-12'>Request Parameters</h3>
+<h3 id='request-parameters-13'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -914,7 +1003,7 @@ by any user. We&#39;re still exploring the best way to lock this down while stil
 </code></pre>
 <p>Cancels a subscription and prevents payments from being taken next billing cycle.
 This can only be called by the user who created the subscription in the first place.</p>
-<h3 id='request-parameters-13'>Request Parameters</h3>
+<h3 id='request-parameters-14'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -948,7 +1037,7 @@ This can only be called by the user who created the subscription in the first pl
 <h2 id='proof-of-priority'>Proof of Priority</h2>
 <p>Our solution to the claim problem is what we call &quot;Proof of Priority&quot;. Since all currencies have inequality (pareto&#39;s principal), we can use this property to coordinate a network of profit seeking service nodes. Also, each subscription has it&#39;s own expected profit based on the subscription amount, fee and  churn rate based on vendor.</p>
 
-<p>Suppose there are a total of 1000 unstaked 8x tokens in the network with the largest holder holding 10% of the total tokens, when a subscription payment is due, the starting stake starts at 1000 * 0.10 = 100. Then, as time goes along the stake decreases exponentially based on an approximate gini coefficient of the system. However, when a service node claims a subscription 80% of their stake is locked up regardless of the minimum stake. Through this mechanism we create a free market where each actors has a different strategy for deploying their capital (one node with the highest priority or multiple nodes with decreasing priorities).</p>
+<p>Suppose there are a total of 1000 unstaked 8x tokens in the network with the largest holder holding 10% of the total tokens, when a subscription payment is due, the starting stake starts at 1000 * 0.10 = 100. Then, as time goes along the stake decreases exponentially based on an approximate gini coefficient of the system. However, when a service node claims a subscription a percentage of their stake is locked up regardless of the actual minimum stake. Through this mechanism we create a free market where each actors has a different strategy for deploying their capital (one node with the highest priority or multiple nodes with decreasing priorities).</p>
 
 <p>In the case that two nodes have similar token stakes and have submitted a transaction in the pool, the node with a lower stake will voluntarily cancel their pending transaction to avoid wasted gas. While this may sound unreasonable, it actually is advantageous for the service node since the total unstaked tokens in the system has decreased hence giving them a higher priority next time.</p>
 <h2 id='staking'>Staking</h2>
